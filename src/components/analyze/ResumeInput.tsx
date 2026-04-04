@@ -87,7 +87,7 @@ export function ResumeInput() {
         onDrop={handleDrop}
         className={`relative rounded-xl border-2 border-dashed transition-colors ${
           dragActive
-            ? "border-violet-500 bg-violet-500/5"
+            ? "border-emerald-500 bg-emerald-500/5"
             : "border-white/10 hover:border-white/20"
         }`}
       >
@@ -100,7 +100,7 @@ export function ResumeInput() {
 
         {uploading && (
           <div className="flex flex-col items-center gap-3 py-12 text-zinc-400">
-            <Loader2 className="h-8 w-8 animate-spin text-violet-400" />
+            <Loader2 className="h-8 w-8 animate-spin text-emerald-400" />
             <p className="text-sm">Extracting text from PDF...</p>
           </div>
         )}
@@ -108,7 +108,7 @@ export function ResumeInput() {
         {text && (
           <div className="flex items-center justify-between border-b border-white/5 px-4 py-2">
             <div className="flex items-center gap-2">
-              <FileText className="h-4 w-4 text-violet-400" />
+              <FileText className="h-4 w-4 text-emerald-400" />
               <span className="text-sm text-zinc-400">
                 {fileName || "Resume content"}
               </span>
@@ -159,7 +159,7 @@ export function ResumeInput() {
         <Button
           onClick={handleSubmit}
           disabled={!text.trim()}
-          className="gap-2 bg-white text-black hover:bg-zinc-200 disabled:opacity-40"
+          className="gap-2 bg-emerald-500 text-white hover:bg-emerald-400 disabled:opacity-40"
         >
           Continue
           <ArrowRight className="h-4 w-4" />

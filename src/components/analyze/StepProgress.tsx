@@ -30,9 +30,9 @@ export function StepProgress({ currentStep }: { currentStep: AnalysisStep }) {
                 animate={{
                   scale: isCurrent ? 1 : 0.9,
                   backgroundColor: isCompleted
-                    ? "rgb(139, 92, 246)"
+                    ? "rgb(16, 185, 129)"
                     : isCurrent
-                      ? "rgb(139, 92, 246)"
+                      ? "rgb(16, 185, 129)"
                       : "rgb(39, 39, 42)",
                 }}
                 className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium"
@@ -62,7 +62,7 @@ export function StepProgress({ currentStep }: { currentStep: AnalysisStep }) {
             {i < steps.length - 1 && (
               <div
                 className={`h-px w-8 sm:w-12 ${
-                  isCompleted ? "bg-violet-500" : "bg-zinc-800"
+                  isCompleted ? "bg-emerald-500" : "bg-zinc-800"
                 }`}
               />
             )}

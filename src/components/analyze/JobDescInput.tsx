@@ -62,7 +62,7 @@ export function JobDescInput() {
 
       <div className="rounded-xl border border-white/10 bg-white/[0.02]">
         <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2">
-          <Briefcase className="h-4 w-4 text-blue-400" />
+          <Briefcase className="h-4 w-4 text-emerald-400" />
           <span className="text-sm text-zinc-400">Job description</span>
           {text.length > 0 && (
             <span className="ml-auto text-xs text-zinc-600">
@@ -90,7 +90,7 @@ export function JobDescInput() {
         <Button
           onClick={handleSubmit}
           disabled={!text.trim()}
-          className="gap-2 bg-white text-black hover:bg-zinc-200 disabled:opacity-40"
+          className="gap-2 bg-emerald-500 text-white hover:bg-emerald-400 disabled:opacity-40"
         >
           Analyze Resume
           <ArrowRight className="h-4 w-4" />

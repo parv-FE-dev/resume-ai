@@ -44,7 +44,7 @@ export function BulletRewriter({ bullets }: BulletRewriterProps) {
   return (
     <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
       <div className="mb-4 flex items-center gap-2">
-        <PenLine className="h-5 w-5 text-violet-400" />
+        <PenLine className="h-5 w-5 text-emerald-400" />
         <h3 className="text-lg font-semibold text-white">
           Bullet Point Improvements
         </h3>

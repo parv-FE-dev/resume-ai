@@ -74,7 +74,7 @@ export function AnalysisView() {
             onClick={() => setActiveTab(tab.key)}
             className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
               activeTab === tab.key
-                ? "bg-white/10 text-white"
+                ? "bg-emerald-500/10 text-emerald-400"
                 : "text-zinc-500 hover:text-zinc-300"
             }`}
           >
@@ -130,13 +130,13 @@ export function AnalysisView() {
                 <p className="mt-1 text-xs text-zinc-500">Keyword Gaps</p>
               </div>
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 text-center">
-                <p className="text-2xl font-bold text-violet-400">
+                <p className="text-2xl font-bold text-emerald-400">
                   {analysis.weakBullets.length}
                 </p>
                 <p className="mt-1 text-xs text-zinc-500">Bullet Rewrites</p>
               </div>
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 text-center">
-                <p className="text-2xl font-bold text-blue-400">
+                <p className="text-2xl font-bold text-amber-400">
                   {analysis.suggestions.length}
                 </p>
                 <p className="mt-1 text-xs text-zinc-500">Suggestions</p>

@@ -6,7 +6,7 @@ import { Target, AlertTriangle, PenLine, TrendingUp } from "lucide-react";
 export function DemoPreview() {
   return (
     <section id="demo" className="relative px-6 py-32">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+      <div className="pointer-events-none absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
       <div className="mx-auto max-w-5xl">
         <motion.div
@@ -29,7 +29,7 @@ export function DemoPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="overflow-hidden rounded-2xl bg-gradient-to-br from-violet-500/10 via-transparent to-blue-500/10 p-px"
+          className="overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500/15 via-transparent to-emerald-600/10 p-px"
         >
           <div className="rounded-2xl bg-zinc-950/95 p-6 backdrop-blur-xl sm:p-8">
             {/* Mock score header */}
@@ -66,7 +66,7 @@ export function DemoPreview() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4">
                 <div className="mb-3 flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4 text-yellow-400" />
+                  <AlertTriangle className="h-4 w-4 text-amber-400" />
                   <span className="text-sm font-medium text-white">Keyword Gaps</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -76,7 +76,7 @@ export function DemoPreview() {
                     </span>
                   ))}
                   {["Agile", "REST APIs"].map((kw) => (
-                    <span key={kw} className="rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-0.5 text-xs text-yellow-400">
+                    <span key={kw} className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-xs text-amber-400">
                       {kw}
                     </span>
                   ))}
@@ -100,7 +100,7 @@ export function DemoPreview() {
 
               <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 sm:col-span-2">
                 <div className="mb-3 flex items-center gap-2">
-                  <PenLine className="h-4 w-4 text-violet-400" />
+                  <PenLine className="h-4 w-4 text-emerald-400" />
                   <span className="text-sm font-medium text-white">AI Bullet Rewrite</span>
                 </div>
                 <div className="space-y-2">
@@ -116,8 +116,8 @@ export function DemoPreview() {
 
             {/* Subtle overlay to hint its a preview */}
             <div className="mt-6 flex items-center justify-center">
-              <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-zinc-500">
-                <Target className="h-3 w-3" />
+              <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-xs text-zinc-500">
+                <Target className="h-3 w-3 text-emerald-500" />
                 Sample analysis preview
               </div>
             </div>

@@ -21,7 +21,7 @@ export function KeywordGaps({ gaps }: KeywordGapsProps) {
   return (
     <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
       <div className="mb-4 flex items-center gap-2">
-        <AlertTriangle className="h-5 w-5 text-yellow-400" />
+        <AlertTriangle className="h-5 w-5 text-amber-400" />
         <h3 className="text-lg font-semibold text-white">Keyword Gaps</h3>
         <Badge variant="secondary" className="ml-auto text-xs">
           {gaps.length} missing

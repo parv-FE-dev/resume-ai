@@ -6,46 +6,46 @@ import {
   Search,
   PenLine,
   Zap,
-  BarChart3,
-  Download,
+  TrendingUp,
+  Shield,
 } from "lucide-react";
 
 const features = [
   {
     icon: Target,
-    title: "Match Scoring",
+    title: "ATS Match Score",
     description:
-      "Get an instant compatibility score showing how well your resume matches the job description.",
+      "Get an instant compatibility score showing how well your resume matches the job description and ATS requirements.",
   },
   {
     icon: Search,
     title: "Keyword Gap Analysis",
     description:
-      "Identify critical keywords and skills missing from your resume that recruiters are looking for.",
+      "Identify critical keywords and skills missing from your resume that recruiters and ATS systems are scanning for.",
   },
   {
     icon: PenLine,
-    title: "Bullet Point Rewriting",
+    title: "AI Bullet Rewriting",
     description:
-      "AI rewrites weak bullet points into impactful, quantified achievements that stand out.",
+      "AI rewrites weak bullet points into impactful, quantified achievements that stand out to hiring managers.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Priority Suggestions",
+    description:
+      "Prioritized recommendations organized by impact — know exactly what to fix first for maximum results.",
+  },
+  {
+    icon: Shield,
+    title: "ATS-Friendly Formatting",
+    description:
+      "Ensure your resume passes automated screening with formatting tips that ATS systems can parse correctly.",
   },
   {
     icon: Zap,
     title: "Instant Analysis",
     description:
-      "Real-time streaming results powered by Claude AI. Get comprehensive feedback in seconds.",
-  },
-  {
-    icon: BarChart3,
-    title: "Actionable Suggestions",
-    description:
-      "Prioritized recommendations organized by impact — know exactly what to fix first.",
-  },
-  {
-    icon: Download,
-    title: "Export Optimized Resume",
-    description:
-      "Download your improved resume with all AI suggestions applied, ready to submit.",
+      "Real-time streaming results powered by Claude AI. Get comprehensive feedback in seconds, not hours.",
   },
 ];
 
@@ -94,10 +94,10 @@ export function Features() {
             <motion.div
               key={feature.title}
               variants={item}
-              className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-colors hover:border-white/10 hover:bg-white/[0.04]"
+              className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-emerald-500/20 hover:bg-emerald-500/[0.03]"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 ring-1 ring-white/10">
-                <feature.icon className="h-5 w-5 text-violet-400" />
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 ring-1 ring-emerald-500/20">
+                <feature.icon className="h-5 w-5 text-emerald-400" />
               </div>
               <h3 className="mb-2 text-lg font-semibold text-white">
                 {feature.title}

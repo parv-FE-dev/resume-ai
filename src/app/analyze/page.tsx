@@ -131,7 +131,7 @@ function StreamingDisplay() {
           </Button>
           <Button
             onClick={handleRetry}
-            className="gap-2 bg-white text-black hover:bg-zinc-200"
+            className="gap-2 bg-emerald-500 text-white hover:bg-emerald-400"
           >
             <RotateCcw className="h-4 w-4" />
             Retry
@@ -145,9 +145,9 @@ function StreamingDisplay() {
     <div className="flex flex-col items-center gap-6 py-16">
       {/* Thinking animation */}
       <div className="relative">
-        <div className="absolute inset-0 animate-ping rounded-full bg-violet-500/20" />
-        <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 ring-1 ring-white/10">
-          <Loader2 className="h-7 w-7 animate-spin text-violet-400" />
+        <div className="absolute inset-0 animate-ping rounded-full bg-emerald-500/20" />
+        <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 ring-1 ring-emerald-500/20">
+          <Loader2 className="h-7 w-7 animate-spin text-emerald-400" />
         </div>
       </div>
       <div className="text-center">
@@ -162,7 +162,7 @@ function StreamingDisplay() {
       {/* Progress bar animation */}
       <div className="w-full max-w-xs overflow-hidden rounded-full bg-zinc-800">
         <motion.div
-          className="h-1 rounded-full bg-gradient-to-r from-violet-500 to-blue-500"
+          className="h-1 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400"
           initial={{ width: "0%" }}
           animate={{ width: streamingText ? "85%" : "30%" }}
           transition={{ duration: streamingText ? 2 : 8, ease: "easeOut" }}
@@ -284,7 +284,7 @@ export default function AnalyzePage() {
   const { currentStep } = useResumeStore();
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-zinc-950">
       <Navbar />
       <main className="mx-auto max-w-5xl px-6 pb-20 pt-28">
         <div className="mb-8 flex items-center justify-between">

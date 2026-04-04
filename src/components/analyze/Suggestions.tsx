@@ -28,7 +28,7 @@ export function Suggestions({ suggestions }: SuggestionsProps) {
   return (
     <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
       <div className="mb-4 flex items-center gap-2">
-        <Lightbulb className="h-5 w-5 text-blue-400" />
+        <Lightbulb className="h-5 w-5 text-amber-400" />
         <h3 className="text-lg font-semibold text-white">
           Actionable Suggestions
         </h3>
