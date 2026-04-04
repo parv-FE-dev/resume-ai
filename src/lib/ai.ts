@@ -4,7 +4,8 @@ export const anthropic = createAnthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-export const model = anthropic("claude-sonnet-4-20250514");
+// Using Haiku for cost optimization — sufficient quality for resume analysis
+export const model = anthropic("claude-haiku-4-20250414");
 
 export const ANALYSIS_SYSTEM_PROMPT = `You are an expert resume analyst and career coach. Analyze the provided resume against the job description and return a detailed JSON analysis.
 

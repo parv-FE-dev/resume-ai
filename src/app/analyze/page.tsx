@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { create } from "zustand";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, AlertCircle, RotateCcw, Clock, Trash2 } from "lucide-react";
+import { Loader2, AlertCircle, RotateCcw, Clock, Trash2, ShieldAlert } from "lucide-react";
 import { useResumeStore, type HistoryEntry } from "@/store/useResumeStore";
 import { StepProgress } from "@/components/analyze/StepProgress";
 import { ResumeInput } from "@/components/analyze/ResumeInput";
@@ -11,7 +12,26 @@ import { AnalysisView } from "@/components/analyze/AnalysisView";
 import { Navbar } from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import Link from "next/link";
 import type { AnalysisResult } from "@/types";
+
+interface RateLimitState {
+  remaining: number | null;
+  rateLimited: boolean;
+  resetAt: number | null;
+  setRemaining: (n: number) => void;
+  setRateLimited: (v: boolean) => void;
+  setResetAt: (t: number) => void;
+}
+
+const useRateLimitStore = create<RateLimitState>((set) => ({
+  remaining: null,
+  rateLimited: false,
+  resetAt: null,
+  setRemaining: (remaining) => set({ remaining }),
+  setRateLimited: (rateLimited) => set({ rateLimited }),
+  setResetAt: (resetAt) => set({ resetAt }),
+}));
 
 function AnalyzingState() {
   const {
@@ -23,6 +43,7 @@ function AnalyzingState() {
     setCurrentStep,
     setError,
   } = useResumeStore();
+  const { setRemaining, setRateLimited, setResetAt } = useRateLimitStore();
 
   useEffect(() => {
     if (!resume || !jobDescription) return;
@@ -43,6 +64,21 @@ function AnalyzingState() {
           }),
           signal: controller.signal,
         });
+
+        // Read rate limit headers
+        const remaining = res.headers.get("X-RateLimit-Remaining");
+        const resetAtHeader = res.headers.get("X-RateLimit-Reset");
+        if (remaining !== null) setRemaining(Number(remaining));
+        if (resetAtHeader !== null) setResetAt(Number(resetAtHeader));
+
+        if (res.status === 429) {
+          const data = await res.json();
+          setRateLimited(true);
+          setResetAt(data.resetAt);
+          setError(data.message);
+          setCurrentStep("analyzing");
+          return;
+        }
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({ error: "Analysis failed" }));
@@ -93,18 +129,62 @@ function AnalyzingState() {
 
     run();
     return () => controller.abort();
-  }, [resume, jobDescription, setAnalysis, setCurrentStep, setError, setStreamingText]);
+  }, [resume, jobDescription, setAnalysis, setCurrentStep, setError, setStreamingText, setRemaining, setRateLimited, setResetAt]);
 
   return null;
 }
 
 function StreamingDisplay() {
   const { streamingText, error, setError, setCurrentStep } = useResumeStore();
+  const { rateLimited, resetAt, setRateLimited } = useRateLimitStore();
 
   const handleRetry = () => {
     setError(null);
+    setRateLimited(false);
     setCurrentStep("analyzing");
   };
+
+  if (rateLimited && error) {
+    const resetDate = resetAt ? new Date(resetAt) : null;
+    return (
+      <div className="flex flex-col items-center gap-6 py-20">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10">
+          <ShieldAlert className="h-7 w-7 text-amber-400" />
+        </div>
+        <div className="text-center">
+          <h2 className="text-xl font-semibold text-white">
+            Daily Limit Reached
+          </h2>
+          <p className="mt-2 max-w-md text-sm text-zinc-400">
+            You have used all 3 free analyses today. Come back tomorrow!
+          </p>
+          {resetDate && (
+            <p className="mt-1 text-xs text-zinc-600">
+              Resets at {resetDate.toLocaleTimeString()}
+            </p>
+          )}
+        </div>
+        <div className="flex gap-3">
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setError(null);
+              setRateLimited(false);
+              setCurrentStep("upload");
+            }}
+            className="gap-2 text-zinc-400"
+          >
+            Go Back
+          </Button>
+          <Link href="/pricing">
+            <Button className="gap-2 bg-emerald-500 text-white hover:bg-emerald-400">
+              Upgrade for Unlimited
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (error) {
     return (
@@ -280,6 +360,20 @@ function HistorySidebar() {
   );
 }
 
+function RemainingBadge() {
+  const { remaining } = useRateLimitStore();
+  if (remaining === null) return null;
+
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full bg-zinc-800 px-2.5 py-1 text-xs text-zinc-400">
+      <span
+        className={`h-1.5 w-1.5 rounded-full ${remaining > 0 ? "bg-emerald-400" : "bg-red-400"}`}
+      />
+      {remaining} {remaining === 1 ? "analysis" : "analyses"} remaining today
+    </span>
+  );
+}
+
 export default function AnalyzePage() {
   const { currentStep } = useResumeStore();
 
@@ -288,8 +382,9 @@ export default function AnalyzePage() {
       <Navbar />
       <main className="mx-auto max-w-5xl px-6 pb-20 pt-28">
         <div className="mb-8 flex items-center justify-between">
-          <div className="flex-1">
+          <div className="flex-1 flex items-center gap-4">
             <StepProgress currentStep={currentStep} />
+            <RemainingBadge />
           </div>
           <HistorySidebar />
         </div>

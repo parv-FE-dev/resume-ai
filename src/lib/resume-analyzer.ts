@@ -10,7 +10,7 @@ export async function analyzeResume(
     system: ANALYSIS_SYSTEM_PROMPT,
     prompt: buildAnalysisPrompt(resumeText, jobDescription),
     temperature: 0.3,
-    maxOutputTokens: 4000,
+    maxOutputTokens: 2000,
   });
 
   return result;
