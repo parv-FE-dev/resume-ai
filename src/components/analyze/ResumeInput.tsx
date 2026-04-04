@@ -1,0 +1,109 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { Upload, FileText, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { useResumeStore } from "@/store/useResumeStore";
+
+export function ResumeInput() {
+  const [text, setText] = useState("");
+  const [dragActive, setDragActive] = useState(false);
+  const { setResume, setCurrentStep } = useResumeStore();
+
+  const handleFile = useCallback(async (file: File) => {
+    if (file.type === "application/pdf") {
+      const formData = new FormData();
+      formData.append("file", file);
+      // PDF parsing would happen server-side
+      // For now, notify user
+      setText(`[PDF uploaded: ${file.name}] — PDF parsing will extract text server-side.`);
+    } else {
+      const content = await file.text();
+      setText(content);
+    }
+  }, []);
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setDragActive(false);
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    },
+    [handleFile]
+  );
+
+  const handleSubmit = () => {
+    if (!text.trim()) return;
+    setResume({ rawText: text.trim() });
+    setCurrentStep("job-description");
+  };
+
+  return (
+    <div className="mx-auto w-full max-w-2xl space-y-6">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-white">Paste your resume</h2>
+        <p className="mt-2 text-zinc-400">
+          Paste your resume text below or drag and drop a PDF file.
+        </p>
+      </div>
+
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragActive(true);
+        }}
+        onDragLeave={() => setDragActive(false)}
+        onDrop={handleDrop}
+        className={`relative rounded-xl border-2 border-dashed transition-colors ${
+          dragActive
+            ? "border-violet-500 bg-violet-500/5"
+            : "border-white/10 hover:border-white/20"
+        }`}
+      >
+        {!text && (
+          <div className="flex flex-col items-center gap-3 py-12 text-zinc-500">
+            <Upload className="h-8 w-8" />
+            <p className="text-sm">Drag & drop a PDF or click to type below</p>
+          </div>
+        )}
+        {text && (
+          <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2">
+            <FileText className="h-4 w-4 text-violet-400" />
+            <span className="text-sm text-zinc-400">Resume content</span>
+          </div>
+        )}
+        <Textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Paste your resume text here..."
+          className={`min-h-[300px] resize-none border-0 bg-transparent text-sm text-zinc-200 placeholder:text-zinc-600 focus-visible:ring-0 ${
+            !text ? "absolute inset-0 opacity-0" : ""
+          }`}
+        />
+        <input
+          type="file"
+          accept=".pdf,.txt,.doc,.docx"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) handleFile(file);
+          }}
+          className="absolute inset-0 cursor-pointer opacity-0"
+          style={{ display: text ? "none" : "block" }}
+        />
+      </div>
+
+      <div className="flex justify-end">
+        <Button
+          onClick={handleSubmit}
+          disabled={!text.trim()}
+          className="gap-2 bg-white text-black hover:bg-zinc-200 disabled:opacity-40"
+        >
+          Continue
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  );
+}

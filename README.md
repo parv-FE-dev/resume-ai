@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ResumeAI
+
+AI-powered resume analyzer and optimizer. Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.
+
+## Features
+
+- **Match Scoring** — Instant compatibility score between your resume and the target job
+- **Keyword Gap Analysis** — Identify missing keywords and skills recruiters are looking for
+- **Bullet Point Rewriting** — AI rewrites weak bullets into quantified, impactful achievements
+- **Actionable Suggestions** — Prioritized recommendations organized by impact
+- **Streaming AI Responses** — Real-time analysis powered by GPT-4o
+- **PDF Upload** — Upload PDF resumes with automatic text extraction
+- **Export** — Download your optimized resume
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router, TypeScript)
+- **Styling**: Tailwind CSS + shadcn/ui
+- **AI**: Vercel AI SDK + OpenAI GPT-4o
+- **State**: Zustand
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **PDF Parsing**: pdf-parse
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- OpenAI API key
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file:
+
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router pages & API
+│   ├── analyze/            # Multi-step analysis flow
+│   └── api/analyze/        # Streaming AI analysis endpoint
+├── components/
+│   ├── ui/                 # shadcn/ui components
+│   ├── landing/            # Landing page sections
+│   ├── analyze/            # Analysis flow components
+│   └── shared/             # Navbar, Footer, ThemeToggle
+├── lib/                    # AI config, PDF parsing, utilities
+├── store/                  # Zustand state management
+└── types/                  # TypeScript interfaces
+```
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
