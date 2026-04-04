@@ -1,9 +1,7 @@
 export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
-  // Dynamic import to avoid build-time issues with canvas dependencies
+  // pdf-parse@1.1.1 uses a default export
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const pdf = require("pdf-parse") as (
-    buffer: Buffer
-  ) => Promise<{ text: string }>;
-  const data = await pdf(buffer);
+  const pdfParse = require("pdf-parse");
+  const data = await pdfParse(buffer);
   return data.text;
 }
