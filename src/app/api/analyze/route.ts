@@ -2,7 +2,7 @@ import { analyzeResume } from "@/lib/resume-analyzer";
 
 export async function POST(req: Request) {
   try {
-    const { resumeText, jobDescription } = await req.json();
+    const { resumeText, jobDescription, jobTitle, company } = await req.json();
 
     if (!resumeText || !jobDescription) {
       return Response.json(
@@ -11,7 +11,15 @@ export async function POST(req: Request) {
       );
     }
 
-    const result = await analyzeResume(resumeText, jobDescription);
+    const fullJD = [
+      jobTitle && `Job Title: ${jobTitle}`,
+      company && `Company: ${company}`,
+      jobDescription,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const result = await analyzeResume(resumeText, fullJD);
 
     return result.toTextStreamResponse();
   } catch (error) {

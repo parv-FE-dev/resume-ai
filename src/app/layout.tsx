@@ -14,16 +14,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ResumeAI — AI-Powered Resume Analyzer & Optimizer",
+  title: "ResumeAI — AI-Powered Resume Optimizer",
   description:
-    "Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points that get you interviews.",
+    "Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
   keywords: [
     "resume analyzer",
     "AI resume",
     "resume optimizer",
     "job description match",
     "ATS optimization",
+    "keyword gap analysis",
+    "resume score",
   ],
+  openGraph: {
+    title: "ResumeAI — AI-Powered Resume Optimizer",
+    description:
+      "Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
+    type: "website",
+    siteName: "ResumeAI",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ResumeAI — AI-Powered Resume Optimizer",
+    description:
+      "Get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

@@ -3,16 +3,23 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useResumeStore } from "@/store/useResumeStore";
 
 export function JobDescInput() {
   const [text, setText] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [company, setCompany] = useState("");
   const { setJobDescription, setCurrentStep } = useResumeStore();
 
   const handleSubmit = () => {
     if (!text.trim()) return;
-    setJobDescription({ rawText: text.trim() });
+    setJobDescription({
+      rawText: text.trim(),
+      title: jobTitle.trim() || undefined,
+      company: company.trim() || undefined,
+    });
     setCurrentStep("analyzing");
   };
 
@@ -27,10 +34,41 @@ export function JobDescInput() {
         </p>
       </div>
 
+      {/* Optional job title & company */}
+      <div className="grid gap-3 sm:grid-cols-2">
+        <div>
+          <label className="mb-1.5 block text-xs font-medium text-zinc-500">
+            Job Title (optional)
+          </label>
+          <Input
+            value={jobTitle}
+            onChange={(e) => setJobTitle(e.target.value)}
+            placeholder="e.g. Senior Frontend Engineer"
+            className="border-white/10 bg-white/[0.02] text-sm text-zinc-200 placeholder:text-zinc-600"
+          />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-xs font-medium text-zinc-500">
+            Company Name (optional)
+          </label>
+          <Input
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="e.g. Google"
+            className="border-white/10 bg-white/[0.02] text-sm text-zinc-200 placeholder:text-zinc-600"
+          />
+        </div>
+      </div>
+
       <div className="rounded-xl border border-white/10 bg-white/[0.02]">
         <div className="flex items-center gap-2 border-b border-white/5 px-4 py-2">
           <Briefcase className="h-4 w-4 text-blue-400" />
           <span className="text-sm text-zinc-400">Job description</span>
+          {text.length > 0 && (
+            <span className="ml-auto text-xs text-zinc-600">
+              {text.length.toLocaleString()} chars
+            </span>
+          )}
         </div>
         <Textarea
           value={text}

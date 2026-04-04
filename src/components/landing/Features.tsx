@@ -33,7 +33,7 @@ const features = [
     icon: Zap,
     title: "Instant Analysis",
     description:
-      "Real-time streaming results powered by GPT-4o. Get comprehensive feedback in seconds.",
+      "Real-time streaming results powered by Claude AI. Get comprehensive feedback in seconds.",
   },
   {
     icon: BarChart3,
@@ -65,7 +65,7 @@ const item = {
 
 export function Features() {
   return (
-    <section className="relative px-6 py-32">
+    <section id="features" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
