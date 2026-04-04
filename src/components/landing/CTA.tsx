@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section className="relative px-6 py-32">
+    <section className="relative px-6 py-28">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute bottom-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 translate-y-1/2 rounded-full bg-emerald-500/6 blur-[120px]" />
+        <div className="absolute bottom-0 left-1/2 h-[600px] w-[800px] -translate-x-1/2 translate-y-1/3 rounded-full bg-emerald-500/8 blur-[150px]" />
       </div>
 
       <motion.div
@@ -18,39 +18,28 @@ export function CTA() {
         transition={{ duration: 0.5 }}
         className="relative z-10 mx-auto max-w-4xl"
       >
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/40 via-zinc-900/80 to-zinc-900 p-px">
-          <div className="rounded-3xl bg-zinc-950/90 px-8 py-16 text-center backdrop-blur-xl sm:px-16">
-            <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
-
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
-              Ready to optimize your resume?
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-emerald-600/20 p-px">
+          <div className="rounded-3xl bg-zinc-950/95 px-8 py-20 text-center backdrop-blur-xl sm:px-16">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Your Next Job Is One{" "}
+              <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+                Analysis
+              </span>{" "}
+              Away
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-zinc-400">
-              Stop guessing what recruiters want. Let AI analyze your resume
-              against any job description and tell you exactly what to improve.
-            </p>
 
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <div className="mt-10 flex flex-col items-center gap-4">
               <Link
                 href="/analyze"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-emerald-500 px-8 text-base font-medium text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-10 text-lg font-semibold text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
               >
-                Start Free Analysis
-                <ArrowRight className="h-4 w-4" />
+                Upload Resume Now
+                <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link
-                href="#demo"
-                className="inline-flex h-12 items-center justify-center rounded-lg border border-white/10 px-8 text-base font-medium text-zinc-300 transition-colors hover:border-emerald-500/30 hover:bg-emerald-500/5 hover:text-white"
-              >
-                View Example
-              </Link>
+              <p className="text-sm text-zinc-600">
+                Free &bull; No signup required &bull; Results in seconds
+              </p>
             </div>
-
-            <p className="mt-6 text-sm text-zinc-600">
-              No sign-up required. Free to use. Powered by Claude AI.
-            </p>
           </div>
         </div>
       </motion.div>

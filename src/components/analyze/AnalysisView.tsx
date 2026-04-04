@@ -35,6 +35,13 @@ export function AnalysisView() {
 
   if (!analysis) return null;
 
+  const scoreColor =
+    analysis.score >= 80
+      ? "text-emerald-400"
+      : analysis.score >= 60
+        ? "text-yellow-400"
+        : "text-red-400";
+
   const handleCopyAll = async () => {
     const text = analysis.suggestions
       .map((s) => `[${s.priority.toUpperCase()}] ${s.title}: ${s.description}`)
@@ -52,6 +59,43 @@ export function AnalysisView() {
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-6">
+      {/* Sticky summary bar */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="sticky top-20 z-30 -mx-2 rounded-xl border border-white/5 bg-zinc-950/90 px-5 py-3 backdrop-blur-xl"
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span className={`text-2xl font-bold ${scoreColor}`}>
+              {analysis.score}
+            </span>
+            <div className="hidden sm:block h-6 w-px bg-white/10" />
+            <div className="hidden sm:flex items-center gap-3 text-xs text-zinc-500">
+              <span>
+                <span className="font-medium text-red-400">{analysis.keywordGaps.length}</span> gaps
+              </span>
+              <span>
+                <span className="font-medium text-emerald-400">{analysis.weakBullets.length}</span> rewrites
+              </span>
+              <span>
+                <span className="font-medium text-amber-400">{analysis.suggestions.length}</span> tips
+              </span>
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleStartOver}
+            className="gap-1.5 text-xs text-zinc-500 hover:text-white"
+          >
+            <RotateCcw className="h-3 w-3" />
+            New
+          </Button>
+        </div>
+      </motion.div>
+
       {/* Score Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -61,21 +105,21 @@ export function AnalysisView() {
         <ScoreCard score={analysis.score} summary={analysis.summary} />
       </motion.div>
 
-      {/* Tab Navigation */}
+      {/* Pill Tab Navigation */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.4 }}
-        className="flex gap-1 rounded-xl border border-white/5 bg-white/[0.02] p-1"
+        className="flex gap-2"
       >
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
+            className={`relative flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all ${
               activeTab === tab.key
-                ? "bg-emerald-500/10 text-emerald-400"
-                : "text-zinc-500 hover:text-zinc-300"
+                ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                : "bg-white/[0.04] text-zinc-500 hover:bg-white/[0.06] hover:text-zinc-300"
             }`}
           >
             <tab.icon className="h-4 w-4" />
@@ -174,18 +218,6 @@ export function AnalysisView() {
           </div>
         )}
       </motion.div>
-
-      {/* Actions */}
-      <div className="flex justify-center pt-4">
-        <Button
-          variant="ghost"
-          onClick={handleStartOver}
-          className="gap-2 text-zinc-400 hover:text-white"
-        >
-          <RotateCcw className="h-4 w-4" />
-          Start Over
-        </Button>
-      </div>
     </div>
   );
 }

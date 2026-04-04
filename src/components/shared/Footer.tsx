@@ -1,42 +1,39 @@
-import { FileText } from "lucide-react";
+import { FileText, Sparkles } from "lucide-react";
 
 export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-zinc-950">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 sm:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
         <div className="flex items-center gap-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600">
+          <div className="relative flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-emerald-500 to-emerald-600">
             <FileText className="h-3 w-3 text-white" />
+            <Sparkles className="absolute -right-0.5 -top-0.5 h-2 w-2 text-emerald-300" />
           </div>
           <span className="text-sm font-medium text-zinc-400">ResumeAI</span>
         </div>
 
-        <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:gap-4">
-          <p className="text-sm text-zinc-600">
-            Built by{" "}
-            <a
-              href="https://parvsaxena.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-400 transition-colors hover:text-emerald-400"
-            >
-              Parv Saxena
-            </a>
-          </p>
-          <span className="hidden text-zinc-800 sm:inline">&middot;</span>
-          <p className="text-xs text-zinc-700">
-            Next.js &bull; Claude AI &bull; Tailwind
-          </p>
-        </div>
-
-        <a
-          href="https://github.com/parvsharmaa/resume-ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-zinc-500 transition-colors hover:text-emerald-400"
-        >
-          GitHub
-        </a>
+        <p className="text-sm text-zinc-600">
+          Built by{" "}
+          <a
+            href="https://parvsaxena.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-400 transition-colors hover:text-emerald-400"
+          >
+            Parv Saxena
+          </a>
+          <span className="mx-2 text-zinc-800">|</span>
+          <a
+            href="https://github.com/parvsharmaa/resume-ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 transition-colors hover:text-emerald-400"
+          >
+            GitHub
+          </a>
+          <span className="mx-2 text-zinc-800">|</span>
+          <span className="text-zinc-700">Powered by Claude AI</span>
+        </p>
       </div>
     </footer>
   );
