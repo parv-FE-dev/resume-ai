@@ -172,27 +172,27 @@ function SuggestionListPreview() {
 
 const features = [
   {
-    title: "ATS Match Score",
+    title: "Smart Resume Analysis",
     description:
-      "Get an instant compatibility score showing exactly how your resume stacks up against the job description. Know whether to apply or optimize first.",
+      "Get an instant match score against your target role. The AI identifies keyword gaps, weak bullets, and missing skills — then tells you exactly what to fix.",
     component: ScoreGaugePreview,
   },
   {
-    title: "Keyword Gap Analysis",
+    title: "Keyword Gap Detection",
     description:
-      "Identify critical keywords the ATS is scanning for that are missing from your resume. Color-coded by priority so you know what to add first.",
+      "The agent compares your resume against your target role and domain, highlighting critical missing keywords that recruiters and ATS systems search for.",
     component: KeywordBadgesPreview,
   },
   {
     title: "AI Bullet Rewrites",
     description:
-      "Weak, vague bullet points are automatically rewritten into quantified, impactful achievements that hiring managers actually want to read.",
+      "Accept, reject, or edit each suggested rewrite. The agent transforms vague descriptions into quantified achievements that demonstrate senior-level impact.",
     component: BulletDiffPreview,
   },
   {
-    title: "Priority Action Items",
+    title: "Job Discovery & Tracking",
     description:
-      "Get a prioritized list of exactly what to fix, organized by impact. No more guessing — follow the list and watch your score climb.",
+      "The agent searches for matching jobs, scores them against your profile, generates tailored cover letters, and tracks every application on a kanban board.",
     component: SuggestionListPreview,
   },
 ];
@@ -211,10 +211,10 @@ export function WhatYouGet() {
           className="mb-16 text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            What you get
+            Everything You Need
           </h2>
           <p className="mt-4 text-lg text-zinc-500">
-            Every feature is designed to maximize your interview callback rate.
+            One agent handles your entire job search — from resume to offer.
           </p>
         </motion.div>
 

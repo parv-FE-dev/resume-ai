@@ -158,18 +158,18 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.4 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-1.5 text-sm text-red-400"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-sm text-emerald-400"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-              75% of resumes are rejected by ATS
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Your AI-powered career agent
             </motion.div>
 
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-              Stop Getting{" "}
-              <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
-                Rejected
+              From Resume to{" "}
+              <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+                Offer Letter
               </span>{" "}
-              by ATS
+              — On Autopilot
             </h1>
 
             <motion.p
@@ -178,9 +178,9 @@ export function Hero() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-400 lg:text-xl"
             >
-              Most resumes never reach a human. Our AI analyzes your resume
-              against the job description, finds missing keywords, and rewrites
-              weak bullets — so you actually get interviews.
+              An AI career agent that learns your goals, optimizes your resume,
+              finds matching jobs in real-time, generates cover letters, and
+              tracks your applications — end to end.
             </motion.p>
 
             {/* CTA buttons */}
@@ -191,17 +191,17 @@ export function Hero() {
               className="mt-8 flex flex-col gap-3 sm:flex-row lg:justify-start justify-center"
             >
               <Link
-                href="/analyze"
+                href="/chat"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-8 text-base font-semibold text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
               >
-                Analyze My Resume
+                Start Your Job Search
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="#before-after"
+                href="#features"
                 className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/10 px-8 text-base font-medium text-zinc-300 transition-colors hover:border-emerald-500/30 hover:bg-emerald-500/5 hover:text-white"
               >
-                See Demo Results
+                See What It Does
                 <ChevronDown className="h-4 w-4" />
               </a>
             </motion.div>

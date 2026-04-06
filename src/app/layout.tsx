@@ -14,30 +14,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ResumeAI — AI-Powered Resume Optimizer",
+  title: "ResumeAI — AI Career Agent | Resume to Offer on Autopilot",
   description:
-    "Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
+    "An AI career agent that optimizes your resume, finds matching jobs, generates cover letters, and tracks applications — from first chat to offer letter.",
   keywords: [
-    "resume analyzer",
-    "AI resume",
+    "AI career agent",
     "resume optimizer",
-    "job description match",
-    "ATS optimization",
-    "keyword gap analysis",
-    "resume score",
+    "job search automation",
+    "AI resume analysis",
+    "job matching",
+    "cover letter generator",
+    "application tracker",
+    "autopilot job search",
   ],
   openGraph: {
-    title: "ResumeAI — AI-Powered Resume Optimizer",
+    title: "ResumeAI — AI Career Agent",
     description:
-      "Upload your resume, paste a job description, and get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
+      "From resume to offer letter on autopilot. AI-powered resume optimization, job discovery, cover letters, and application tracking.",
     type: "website",
     siteName: "ResumeAI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ResumeAI — AI-Powered Resume Optimizer",
+    title: "ResumeAI — AI Career Agent",
     description:
-      "Get instant AI analysis with match scoring, keyword gaps, and rewritten bullet points.",
+      "AI-powered career agent: resume optimization, job matching, cover letters, and application tracking.",
   },
   robots: {
     index: true,

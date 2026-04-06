@@ -23,21 +23,21 @@ export function CTA() {
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Your Next Job Is One{" "}
               <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
-                Analysis
+                Conversation
               </span>{" "}
               Away
             </h2>
 
             <div className="mt-10 flex flex-col items-center gap-4">
               <Link
-                href="/analyze"
+                href="/chat"
                 className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-10 text-lg font-semibold text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25"
               >
-                Upload Resume Now
+                Talk to Your Career Agent
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <p className="text-sm text-zinc-600">
-                Free &bull; No signup required &bull; Results in seconds
+                Free &bull; No signup required &bull; AI-powered end to end
               </p>
             </div>
           </div>

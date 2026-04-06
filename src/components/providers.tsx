@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Toaster } from "sonner";
+import { DemoBanner } from "@/components/shared/DemoBanner";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -10,6 +11,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <DemoBanner />
       {children}
       <Toaster
         theme="dark"

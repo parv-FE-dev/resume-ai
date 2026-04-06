@@ -1,23 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileUp, Target, Sparkles } from "lucide-react";
+import { MessageSquare, FileUp, Search, Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: FileUp,
-    title: "Paste or Upload Resume",
-    description: "Drop your PDF or paste resume text",
+    icon: MessageSquare,
+    title: "Tell the Agent Your Goals",
+    description: "Chat naturally about your target role, skills, and preferences",
   },
   {
-    icon: Target,
-    title: "Add Job Description",
-    description: "Paste the role you're targeting",
+    icon: FileUp,
+    title: "Upload & Optimize Resume",
+    description: "AI analyzes, rewrites, and optimizes for your target",
+  },
+  {
+    icon: Search,
+    title: "Discover Matching Jobs",
+    description: "Auto-matched jobs with scoring, filtering, and apply assist",
   },
   {
     icon: Sparkles,
-    title: "Get AI Analysis in Seconds",
-    description: "Score, keywords, rewrites & suggestions",
+    title: "Track & Autopilot",
+    description: "Kanban tracker + scheduled searches that run for you",
   },
 ];
 
@@ -38,7 +43,7 @@ export function HowItWorks() {
             How it works
           </h2>
           <p className="mt-4 text-lg text-zinc-500">
-            Three steps. Under two minutes. Zero guesswork.
+            From first chat to offer letter — your AI agent handles it all.
           </p>
         </motion.div>
 

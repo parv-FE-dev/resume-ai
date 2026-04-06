@@ -19,6 +19,14 @@ export async function POST(req: Request) {
       );
     }
 
+    // 10MB max file size
+    if (file.size > 10 * 1024 * 1024) {
+      return Response.json(
+        { error: "PDF too large (max 10MB)" },
+        { status: 400 }
+      );
+    }
+
     const { extractTextFromPDF } = await import("@/lib/pdf-parser");
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);

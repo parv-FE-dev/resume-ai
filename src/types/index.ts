@@ -41,6 +41,22 @@ export interface Suggestion {
 
 export type AnalysisStep = "upload" | "job-description" | "analyzing" | "results";
 
+export type BulletDecision = "accepted" | "rejected" | "edited";
+
+export interface BulletAction {
+  index: number;
+  decision: BulletDecision;
+  editedText?: string;
+}
+
+export interface ResumeVersion {
+  id: string;
+  label: string;
+  content: string;
+  changes: BulletAction[];
+  timestamp: number;
+}
+
 export interface AppState {
   resume: ResumeData | null;
   jobDescription: JobDescription | null;

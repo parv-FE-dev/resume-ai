@@ -2,7 +2,28 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileText, Sparkles } from "lucide-react";
+import {
+  FileText,
+  Sparkles,
+  MessageSquare,
+  Search,
+  LayoutDashboard,
+  Settings,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { MobileNav } from "./MobileNav";
+
+const NAV_ITEMS = [
+  { href: "/chat", label: "Agent Chat", icon: MessageSquare },
+  { href: "/analyze", label: "Resume", icon: FileText },
+  { href: "/jobs", label: "Jobs", icon: Search },
+  {
+    href: "/dashboard",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+  },
+  { href: "/settings", label: "Settings", icon: Settings },
+];
 
 export function Navbar() {
   const pathname = usePathname();
@@ -11,6 +32,7 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/50 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600">
             <FileText className="h-4 w-4 text-white" />
@@ -21,36 +43,31 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-6">
-          {isLanding && (
-            <div className="hidden items-center gap-5 sm:flex">
-              <a
-                href="#features"
-                className="text-sm text-zinc-400 transition-colors hover:text-emerald-400"
+        {/* Desktop Navigation */}
+        <div className="hidden sm:flex items-center gap-1">
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm transition-colors",
+                  isActive
+                    ? "bg-emerald-500/10 text-emerald-400 font-medium"
+                    : "text-zinc-400 hover:text-white hover:bg-zinc-800/50"
+                )}
               >
-                Features
-              </a>
-              <a
-                href="#how-it-works"
-                className="text-sm text-zinc-400 transition-colors hover:text-emerald-400"
-              >
-                How It Works
-              </a>
-              <a
-                href="#before-after"
-                className="text-sm text-zinc-400 transition-colors hover:text-emerald-400"
-              >
-                Demo
-              </a>
-            </div>
-          )}
-          <Link
-            href="/analyze"
-            className="inline-flex h-8 items-center justify-center rounded-lg bg-emerald-500 px-4 text-sm font-medium text-white transition-all hover:bg-emerald-400 hover:shadow-md hover:shadow-emerald-500/20"
-          >
-            Get Started
-          </Link>
+                <Icon className="h-4 w-4" />
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
+
+        {/* Mobile Navigation */}
+        <MobileNav />
       </div>
     </nav>
   );

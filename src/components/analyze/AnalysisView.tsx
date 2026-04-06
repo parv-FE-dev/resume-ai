@@ -16,20 +16,25 @@ import { ScoreCard } from "./ScoreCard";
 import { KeywordGaps } from "./KeywordGaps";
 import { BulletRewriter } from "./BulletRewriter";
 import { Suggestions } from "./Suggestions";
+import { RewritePanel } from "./RewritePanel";
+import { VersionSelector } from "./VersionSelector";
+import { PDFExportButton } from "./PDFExport";
 import { useResumeStore } from "@/store/useResumeStore";
+import { useVersionStore } from "@/store/useVersionStore";
 import { toast } from "sonner";
 
-type TabKey = "overview" | "keywords" | "bullets" | "suggestions";
+type TabKey = "overview" | "keywords" | "bullets" | "suggestions" | "rewrite";
 
 const tabs: { key: TabKey; label: string; icon: typeof BarChart3 }[] = [
   { key: "overview", label: "Overview", icon: BarChart3 },
   { key: "keywords", label: "Keywords", icon: Search },
-  { key: "bullets", label: "Bullets", icon: PenLine },
+  { key: "rewrite", label: "Rewrite", icon: PenLine },
   { key: "suggestions", label: "Suggestions", icon: Lightbulb },
 ];
 
 export function AnalysisView() {
-  const { analysis, reset } = useResumeStore();
+  const { analysis, resume, reset } = useResumeStore();
+  const versionStore = useVersionStore();
   const [activeTab, setActiveTab] = useState<TabKey>("overview");
   const [copiedAll, setCopiedAll] = useState(false);
 
@@ -84,15 +89,19 @@ export function AnalysisView() {
               </span>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleStartOver}
-            className="gap-1.5 text-xs text-zinc-500 hover:text-white"
-          >
-            <RotateCcw className="h-3 w-3" />
-            New
-          </Button>
+          <div className="flex items-center gap-2">
+            <VersionSelector />
+            {resume?.rawText && <PDFExportButton resumeText={resume.rawText} />}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleStartOver}
+              className="gap-1.5 text-xs text-zinc-500 hover:text-white"
+            >
+              <RotateCcw className="h-3 w-3" />
+              New
+            </Button>
+          </div>
         </div>
       </motion.div>
 
@@ -193,8 +202,15 @@ export function AnalysisView() {
           <KeywordGaps gaps={analysis.keywordGaps} />
         )}
 
-        {activeTab === "bullets" && (
-          <BulletRewriter bullets={analysis.weakBullets} />
+        {activeTab === "rewrite" && (
+          <RewritePanel
+            weakBullets={analysis.weakBullets}
+            resumeText={resume?.rawText ?? ""}
+            onExportPDF={() => {
+              const btn = document.querySelector('[data-pdf-export]') as HTMLButtonElement;
+              btn?.click();
+            }}
+          />
         )}
 
         {activeTab === "suggestions" && (

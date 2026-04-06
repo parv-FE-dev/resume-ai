@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "10,000+", label: "Resumes Analyzed" },
-  { value: "85%", label: "Avg Score Improvement" },
-  { value: "30+", label: "ATS Systems Tested" },
+  { value: "6", label: "AI-Powered Workflows" },
+  { value: "100%", label: "Automated Pipeline" },
+  { value: "0", label: "Manual Spreadsheets" },
 ];
 
 export function StatsBar() {
